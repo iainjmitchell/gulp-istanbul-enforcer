@@ -1,0 +1,33 @@
+{
+  "name": "gulp-istanbul-enforcer",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies" : {
+    "istanbul" : "*"
+  },
+  "devDependencies" :{
+    "gulp" : "*",
+    "gulp-mocha" : "*",
+    "gulp-jshint" : "*",
+    "gulp-git" : "*",
+    "jshint-stylish" : "*"
+  },
+  "scripts":{
+    "test": "./node_modules/gulp/bin/gulp.js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "karma",
+    "istanbul",
+    "coverage"
+  ],
+  "author": "Iain Mitchell <iainjmitchell@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer/issues"
+  }
+}
