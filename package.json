@@ -10,7 +10,8 @@
     "gulp-mocha" : "*",
     "gulp-jshint" : "*",
     "gulp-git" : "*",
-    "jshint-stylish" : "*"
+    "jshint-stylish" : "*",
+    "chai" : "*"
   },
   "scripts":{
     "test": "./node_modules/gulp/bin/gulp.js test"
