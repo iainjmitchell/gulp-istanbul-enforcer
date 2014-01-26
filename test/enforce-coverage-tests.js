@@ -8,6 +8,11 @@ describe('When coverage is enforced', function(){
 			this.run = function(runArguments){
 				this.runArguments = runArguments;
 			};
+		},
+		FakeCommandFactory = function(command){
+			this.create = function(){
+				return command;
+			};
 		};
 
 	it('Then check-coverage istanbul command created', function(){
@@ -25,12 +30,7 @@ describe('When coverage is enforced', function(){
 	});
 
 	it('Then check-coverage command is started with statements level in arguments', function(){
-		var FakeCommandFactory = function(command){
-				this.create = function(){
-					return command;
-				};
-			},
-			mockCommand = new MockCommand();
+		var mockCommand = new MockCommand();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
 			statements : 90
