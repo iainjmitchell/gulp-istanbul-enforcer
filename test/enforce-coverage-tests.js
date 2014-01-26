@@ -11,7 +11,9 @@ describe('When coverage is enforced', function(){
 				}
 			};
 		CoverageEnforcer.__set__('commandFactory', mockCommandFactory);
-		CoverageEnforcer();
+		var stream = CoverageEnforcer();
+		stream.write();
+		stream.end();
 		mockCommandFactory.createType.should.equal('check-coverage');
 	});
 });

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "dependencies" : {
-    "istanbul" : "*"
+    "istanbul" : "*",
+    "through2" : "*"
   },
   "devDependencies" :{
     "gulp" : "*",
