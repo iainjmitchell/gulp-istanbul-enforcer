@@ -23,20 +23,21 @@ describe('When coverage is enforced', function(){
 				}
 			};
 		CoverageEnforcer.__set__('commandFactory', mockCommandFactory);
-		var stream = CoverageEnforcer();
+		var stream = CoverageEnforcer({});
 		stream.write();
 		stream.end();
 		mockCommandFactory.createType.should.equal('check-coverage');
 	});
 
 	it('Then check-coverage command is started with statements level in arguments', function(){
-		var mockCommand = new MockCommand();
+		var mockCommand = new MockCommand(),
+			statements = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
-			statements : 90
+			statements : statements
 		});
 		stream.write();
 		stream.end();
-		mockCommand.runArguments.should.include('--statements=90');
+		mockCommand.runArguments.should.include('--statements=' + statements);
 	});
 });
