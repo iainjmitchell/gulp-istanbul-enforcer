@@ -84,4 +84,23 @@ describe('When coverage is enforced', function(){
 		});
 	});
 
+	describe('And coverage is not meeting thresholds', function(){
+		it('Then an error is reported to gulp', function(done){
+			var coverageFailure = 'A failure',
+				coverageNotMeetingThresholdsCommand = {
+					run : function(runArguments, callback){
+						callback(coverageFailure);
+					}
+				};
+			CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageNotMeetingThresholdsCommand));
+			var stream = CoverageEnforcer({
+			});
+			stream.on('error', function(){
+				done();
+			});
+			stream.write();
+			stream.end();
+		});
+	});
+
 });
