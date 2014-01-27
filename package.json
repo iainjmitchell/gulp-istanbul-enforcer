@@ -4,7 +4,8 @@
   "private": true,
   "dependencies" : {
     "istanbul" : "*",
-    "through2" : "*"
+    "through2" : "*",
+    "gulp-util" : "*"
   },
   "devDependencies" :{
     "gulp" : "*",

@@ -85,22 +85,37 @@ describe('When coverage is enforced', function(){
 	});
 
 	describe('And coverage is not meeting thresholds', function(){
-		it('Then an error is reported to gulp', function(done){
-			var coverageFailure = 'A failure',
-				coverageNotMeetingThresholdsCommand = {
+		it('Then an error is reported to gulp from this plugin', function(done){
+			var coverageNotMeetingThresholdsCommand = {
 					run : function(runArguments, callback){
-						callback(coverageFailure);
+						callback('coverage issues');
 					}
 				};
 			CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageNotMeetingThresholdsCommand));
-			var stream = CoverageEnforcer({
+			var stream = CoverageEnforcer({});
+			stream.on('error', function(error){
+				error.plugin.should.equal('gulp-istanbul-enforcer');
+				done();
 			});
-			stream.on('error', function(){
+			stream.write();
+			stream.end();
+		});
+
+		it('Then an error contains the coverage issues', function(done){
+			var coverageIssues = 'Some random issues ' + Math.random(),
+				coverageNotMeetingThresholdsCommand = {
+					run : function(runArguments, callback){
+						callback(coverageIssues);
+					}
+				};
+			CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageNotMeetingThresholdsCommand));
+			var stream = CoverageEnforcer({});
+			stream.on('error', function(error){
+				error.message.should.equal(coverageIssues);
 				done();
 			});
 			stream.write();
 			stream.end();
 		});
 	});
-
 });
