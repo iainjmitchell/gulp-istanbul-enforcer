@@ -112,6 +112,12 @@ describe('When coverage is enforced', function(){
 	});
 
 	it('Then it should call the callback for the flush method', function (done) {
+		var fakeCommand = {
+				run : function(runArguments, callback){
+					callback(null);
+				}
+			};
+		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(fakeCommand));
 		var stream = CoverageEnforcer({thresholds : {}});
 		stream._flush(function () {
 			done();
