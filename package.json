@@ -36,5 +36,5 @@
   "directories": {
       "lib": "./lib"
   },
-  "main": "./lib/gulp-istanbul-enforcer.js",
+  "main": "./lib/gulp-istanbul-enforcer.js"
 }
