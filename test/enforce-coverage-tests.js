@@ -23,7 +23,7 @@ describe('When coverage is enforced', function(){
 				}
 			};
 		CoverageEnforcer.__set__('commandFactory', mockCommandFactory);
-		var stream = CoverageEnforcer({});
+		var stream = CoverageEnforcer({thresholds : {}});
 		stream.write();
 		stream.end();
 		mockCommandFactory.createType.should.equal('check-coverage');
@@ -34,7 +34,9 @@ describe('When coverage is enforced', function(){
 			statements = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
-			statements : statements
+			thresholds : {
+				statements : statements
+			}
 		});
 		stream.write();
 		stream.end();
@@ -46,7 +48,9 @@ describe('When coverage is enforced', function(){
 			branches = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
-			branches : branches
+			thresholds : {
+				branches : branches
+			}
 		});
 		stream.write();
 		stream.end();
@@ -58,7 +62,9 @@ describe('When coverage is enforced', function(){
 			lines = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
-			lines : lines
+			thresholds : {
+				lines : lines
+			}
 		});
 		stream.write();
 		stream.end();
@@ -70,7 +76,9 @@ describe('When coverage is enforced', function(){
 			functions = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
-			functions : functions
+			thresholds : {
+				functions : functions
+			}
 		});
 		stream.write();
 		stream.end();
@@ -82,6 +90,7 @@ describe('When coverage is enforced', function(){
 			coverageDirectory = 'a random directory ' + Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
+			thresholds : {},
 			coverageDirectory : coverageDirectory
 		});
 		stream.write();
@@ -94,6 +103,7 @@ describe('When coverage is enforced', function(){
 			rootDirectory = 'a random directory ' + Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
+			thresholds : {},
 			rootDirectory : rootDirectory
 		});
 		stream.write();
@@ -102,7 +112,7 @@ describe('When coverage is enforced', function(){
 	});
 
 	it('Then it should call the callback for the flush method', function (done) {
-		var stream = CoverageEnforcer({});
+		var stream = CoverageEnforcer({thresholds : {}});
 		stream._flush(function () {
 			done();
 		});
@@ -116,7 +126,7 @@ describe('When coverage is enforced', function(){
 					}
 				};
 			CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageNotMeetingThresholdsCommand));
-			var stream = CoverageEnforcer({});
+			var stream = CoverageEnforcer({thresholds : {}});
 			stream.on('error', function(error){
 				error.plugin.should.equal('gulp-istanbul-enforcer');
 				done();
@@ -133,7 +143,7 @@ describe('When coverage is enforced', function(){
 					}
 				};
 			CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageNotMeetingThresholdsCommand));
-			var stream = CoverageEnforcer({});
+			var stream = CoverageEnforcer({thresholds : {}});
 			stream.on('error', function(error){
 				error.message.should.equal(coverageIssues);
 				done();
