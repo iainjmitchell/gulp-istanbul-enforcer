@@ -29,7 +29,7 @@ describe('When coverage is enforced', function(){
 		mockCommandFactory.createType.should.equal('check-coverage');
 	});
 
-	it('Then check-coverage command is started with statements level in arguments', function(){
+	it('Then check-coverage command is started with statements threshold in arguments', function(){
 		var mockCommand = new MockCommand(),
 			statements = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
@@ -41,7 +41,7 @@ describe('When coverage is enforced', function(){
 		mockCommand.runArguments.should.include('--statements=' + statements);
 	});
 
-	it('Then check-coverage command is started with branches level in arguments', function(){
+	it('Then check-coverage command is started with branches threshold in arguments', function(){
 		var mockCommand = new MockCommand(),
 			branches = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
@@ -53,7 +53,7 @@ describe('When coverage is enforced', function(){
 		mockCommand.runArguments.should.include('--branches=' + branches);
 	});
 
-	it('Then check-coverage command is started with lines level in arguments', function(){
+	it('Then check-coverage command is started with lines threshold in arguments', function(){
 		var mockCommand = new MockCommand(),
 			lines = Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
@@ -63,5 +63,17 @@ describe('When coverage is enforced', function(){
 		stream.write();
 		stream.end();
 		mockCommand.runArguments.should.include('--lines=' + lines);
+	});
+
+	it('Then check-coverage command is started with functions threshold in arguments', function(){
+		var mockCommand = new MockCommand(),
+			functions = Math.random();
+		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
+		var stream = CoverageEnforcer({
+			functions : functions
+		});
+		stream.write();
+		stream.end();
+		mockCommand.runArguments.should.include('--functions=' + functions);
 	});
 });
