@@ -52,4 +52,16 @@ describe('When coverage is enforced', function(){
 		stream.end();
 		mockCommand.runArguments.should.include('--branches=' + branches);
 	});
+
+	it('Then check-coverage command is started with lines level in arguments', function(){
+		var mockCommand = new MockCommand(),
+			lines = Math.random();
+		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
+		var stream = CoverageEnforcer({
+			lines : lines
+		});
+		stream.write();
+		stream.end();
+		mockCommand.runArguments.should.include('--lines=' + lines);
+	});
 });
