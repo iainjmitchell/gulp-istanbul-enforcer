@@ -79,7 +79,7 @@ describe('When coverage is enforced', function(){
 
 	it('Then check-coverage command is started with coverage directory in arguments', function(){
 		var mockCommand = new MockCommand(),
-			coverageDirectory = 'a ranndom directory ' + Math.random();
+			coverageDirectory = 'a random directory ' + Math.random();
 		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
 		var stream = CoverageEnforcer({
 			coverageDirectory : coverageDirectory
@@ -87,6 +87,18 @@ describe('When coverage is enforced', function(){
 		stream.write();
 		stream.end();
 		mockCommand.runArguments.should.include('--dir=' + coverageDirectory);
+	});
+
+	it('Then check-coverage command is started with root directory in arguments', function(){
+		var mockCommand = new MockCommand(),
+			rootDirectory = 'a random directory ' + Math.random();
+		CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(mockCommand));
+		var stream = CoverageEnforcer({
+			rootDirectory : rootDirectory
+		});
+		stream.write();
+		stream.end();
+		mockCommand.runArguments.should.include('--root=' + rootDirectory);
 	});
 
 	it('Then it should call the callback for the flush method', function (done) {
