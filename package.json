@@ -1,7 +1,11 @@
 {
   "name": "gulp-istanbul-enforcer",
+  "author": "Iain Mitchell <iainjmitchell@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer/issues"
+  },
   "version": "0.0.1",
-  "private": true,
   "dependencies" : {
     "istanbul" : "*",
     "through2" : "*",
@@ -29,9 +33,8 @@
     "istanbul",
     "coverage"
   ],
-  "author": "Iain Mitchell <iainjmitchell@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer/issues"
-  }
+  "directories": {
+      "lib": "./lib"
+  },
+  "main": "./lib/gulp-istanbul-enforcer.js",
 }
