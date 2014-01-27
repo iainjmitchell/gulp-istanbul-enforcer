@@ -76,4 +76,12 @@ describe('When coverage is enforced', function(){
 		stream.end();
 		mockCommand.runArguments.should.include('--functions=' + functions);
 	});
+
+	it('Then it should call the callback for the flush method', function (done) {
+		var stream = CoverageEnforcer({});
+		stream._flush(function () {
+			done();
+		});
+	});
+
 });
