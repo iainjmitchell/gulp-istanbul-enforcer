@@ -41,11 +41,11 @@ gulp.task('enforce-coverage', function () {
 Options
 ---------------
 
-**thresholds**
+###thresholds
 Set the required percentage levels for each of the coverage measurements (statements, branches, lines, functions).
 
-**coverageDirectory**
+###coverageDirectory
 The directory that istanbul has outputted the coverage results to.
 
-**rootDirectory**
+###rootDirectory
 The root directory of the project, in most cases this can be set to blank.
