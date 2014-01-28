@@ -1,12 +1,12 @@
 {
   "name": "gulp-istanbul-enforcer",
   "author": "Iain Mitchell <iainjmitchell@gmail.com>",
-  "description": "Enforces coverage thresholds from istanbul",
+  "description": "Plugin for gulp that enforces coverage thresholds from Istanbul",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer/issues"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies" : {
     "istanbul" : "*",
     "through2" : "*",
