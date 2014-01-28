@@ -1,11 +1,12 @@
 {
   "name": "gulp-istanbul-enforcer",
   "author": "Iain Mitchell <iainjmitchell@gmail.com>",
+  "description": "mutation testing framework",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/iainjmitchell/gulp-istanbul-enforcer/issues"
   },
-  "version": "0.0.1",
+  "version": "1.0.0",
   "dependencies" : {
     "istanbul" : "*",
     "through2" : "*",
