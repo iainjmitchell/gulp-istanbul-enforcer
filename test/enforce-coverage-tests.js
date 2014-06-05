@@ -111,6 +111,21 @@ describe('When coverage is enforced', function(){
 		mockCommand.runArguments.should.include('--root=' + rootDirectory);
 	});
 
+    it('Then it should signal the process is complete', function (done) {
+        var coverageMetThresholdsCommand = {
+            run : function(runArguments, callback){
+                callback(null);
+            }
+        };
+        CoverageEnforcer.__set__('commandFactory', new FakeCommandFactory(coverageMetThresholdsCommand));
+        var stream = CoverageEnforcer({thresholds : {}});
+        stream.on('end', function(){
+            done();
+        });
+        stream.write();
+        stream.end();
+    });
+
 	it('Then it should call the callback for the flush method', function (done) {
 		var fakeCommand = {
 				run : function(runArguments, callback){
