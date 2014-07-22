@@ -21,7 +21,7 @@ Then, add it to your `gulpfile.js`:
 ```javascript
 var coverageEnforcer = require("gulp-istanbul-enforcer");
 
-gulp.task('enforce-coverage', function () {
+gulp.task('enforce-coverage', function (cb) {
   var options = {
         thresholds : {
           statements : 100,
@@ -32,9 +32,10 @@ gulp.task('enforce-coverage', function () {
         coverageDirectory : 'coverage',
         rootDirectory : ''
       };
-  return gulp
+  gulp
     .src('.')
-    .pipe(coverageEnforcer(options));
+    .pipe(coverageEnforcer(options))
+    .on('end', cb);
 });
 ```
 
